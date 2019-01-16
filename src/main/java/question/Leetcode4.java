@@ -31,88 +31,70 @@ import java.util.function.BinaryOperator;
  */
 
 public class Leetcode4 {
-    public static double  findMedianSortedArrays(int[] nums1, int[] nums2) {
-        //int findNo = (nums1.length + nums2.length + 1)/2;
-        //int start1 = 0 ;
-        //int end1 = nums1.length-1;
-        //int start2 = 0 ;
-        //int end2 = nums2.length-1;
-        //int i1 = (start1 + end1)/2;
-        //int i2 = (start2 + end2)/2;
-        //int find2 = 0;
-        //int find1 = 0;
-        //
-        //
-        //while(find1+find2+1 >= findNo){
-        //    if (nums1[i1] <= nums2[i2]){
-        //        find2 = binaryFind(i1,nums2);
-        //        find1 = i1;
-        //    }else{
-        //        find1 = binaryFind(i2,nums1);
-        //        find2 = i2;
-        //    }
-        //}
+        /*
+    来自官方解法：
+       通过二分查找找到合适的i，使得左右的元素相等且左边的都比右边小。
+       其中j=(m+n+1)/2 - i  为了让j不为负 限定n>=m （+1是为了考虑m+n为奇数的情况）
 
-
-        int findNo = (nums1.length + nums2.length + 1)/2;
-        int find1 = findNo * nums1.length/(nums1.length + nums2.length);
-        int find2 = findNo * nums2.length/(nums1.length + nums2.length);
-        int headPointer1 = find1 - 1;
-        int headPointer2 = find2 - 1;
-        int tailPointer1 = nums1.length - find1;
-        int tailPointer2 = nums2.length - find2;
-        int headfind = 0;
-        int tailfind = 0;
-        //正向寻找
-        if (nums1[headPointer1] <= nums2[headPointer2]){
-            headfind = binaryFind(nums1[headPointer1],nums2,0, headPointer2);
-            headfind = headfind + find1;
-        }else{
-            headfind = binaryFind(nums2[headPointer1],nums1,0, headPointer1);
-            headfind = headfind + find2;
-        }
-
-        //反向寻找
-        if (nums1[tailPointer1] >= nums2[tailPointer2]){
-            tailfind = binaryFind2(nums1[tailPointer1],nums2,0, tailPointer2);
-            tailfind = tailfind + find1;
-        }else{
-            tailfind = binaryFind2(nums2[tailPointer2],nums1,0, tailPointer1);
-            tailfind = tailfind + find2;
-        }
-
-
-
-        return 0;
-
-    }
-
-    public static boolean isEven(int n){
-        return n%2==0;
-    }
-
-    //二分查找数组arr中小于等于n的个数
-    public static int binaryFind(int n, int[] arr, int start, int end){
-        int i = (start + end)/2;
-        while(start != end){
-            if (arr[i] <= n){
-                start = i + 1;
-            }else {
-                end = i -1;
+              left_part          |        right_part
+        A[0], A[1], ..., A[i-1]  |  A[i], A[i+1], ..., A[m-1]
+        B[0], B[1], ..., B[j-1]  |  B[j], B[j+1], ..., B[n-1]
+     */
+        public static double  findMedianSortedArrays(int[] nums1, int[] nums2) {
+            if(nums1.length > nums2.length){
+                int[] temp = nums1;
+                nums1 = nums2;
+                nums2 = temp;
             }
-            i = (start + end)/2;
+            int m = nums1.length;
+            int n = nums2.length;
+            int min = 0;
+            int max = m;
+            int i = (min + max)/2;
+            int j = (m+n+1)/2 - i;
+            while (true){
+                if (i != 0 && nums1[i-1] > nums2[j]){
+                    max = i - 1;
+                }else if (i != m && nums2[j-1] > nums1[i]){
+                    min = i + 1;
+                }else {
+                    break;
+                }
+                i = (min + max)/2;
+                j = (m+n+1)/2 - i;
+            }
+            if ((m + n) % 2 == 1) {
+                if (i == 0){
+                    return  nums2[j-1];
+                }else {
+                    return Math.max(nums1[i-1], nums2[j-1]);
+                }
+            }else {
+                if (i == 0){
+                    if (j == n){
+                        return (nums1[0] + nums2[n-1])/2.0;
+                    }
+                    if (m == 0){
+                        return  (nums2[j-1] + nums2[j])/2.0;
+                    }
+                    return (nums2[j-1] +  Math.min(nums1[0],nums2[j]))/2.0;
+                }
+                if (i == m){
+                    if (j == 0){
+                        return  (nums1[m-1] + nums2[0])/2.0;
+                    }
+                    return (Math.max(nums1[m-1], nums2[j-1]) + nums2[j])/2.0;
+                }
+                return (Math.max(nums1[i-1], nums2[j-1]) + Math.min(nums1[i], nums2[j]))/2.0;
+            }
         }
-        return arr[i] <= n ? i + 1 : i;
-    }
-
-    //二分查找数组arr中大于等于n的个数
-    public static int binaryFind2(int n, int[] arr, int start, int end){
-        return 0;
-    }
+    
 
     public static void main(String[] args) {
         int[] arr = new int[]{1,2,3,4,4,4,4,4,4};
-        Arrays.sort(arr);
+        System.out.println(
+                findMedianSortedArrays(new int[]{1,2}, new int[]{-1,3} )
+        );
 
     }
 }
