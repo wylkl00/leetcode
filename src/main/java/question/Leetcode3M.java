@@ -1,7 +1,5 @@
 package question;
 
-import sun.applet.Main;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,7 +29,7 @@ import java.util.Map;
  * @since 2018/11/20
  */
 
-public class Leetcode3 {
+public class Leetcode3M {
 
     public static int lengthOfLongestSubstring(String s) {
         char[] chars = s.toCharArray();
@@ -62,7 +60,7 @@ public class Leetcode3 {
     }
 
     public static void main(String[] args) {
-        Leetcode3 l3 = new Leetcode3();
+        Leetcode3M l3 = new Leetcode3M();
         System.out.println(lengthOfLongestSubstring("abcabcbb"));
     }
 }

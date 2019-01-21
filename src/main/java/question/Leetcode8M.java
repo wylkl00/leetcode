@@ -50,7 +50,7 @@ package question;
  * @since 2019/1/9
  */
 
-public class Leetcode8 {
+public class Leetcode8M {
     public static  int myAtoi(String str) {
         char[] chars = str.toCharArray();
         boolean isStartBlank = true;

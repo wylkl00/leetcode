@@ -33,7 +33,7 @@ package question;
  * @since 2018/11/20
  */
 
-public class Leetcode925 {
+public class Leetcode925E {
 
 
     //对输入值依次遍历，检查是否等于原值的下一位，如果不等于则检查是否与上一位重复

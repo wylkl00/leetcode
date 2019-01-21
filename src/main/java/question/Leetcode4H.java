@@ -30,7 +30,7 @@ import java.util.function.BinaryOperator;
  * @since 2018/11/21
  */
 
-public class Leetcode4 {
+public class Leetcode4H {
         /*
     来自官方解法：
        通过二分查找找到合适的i，使得左右的元素相等且左边的都比右边小。
@@ -88,7 +88,7 @@ public class Leetcode4 {
                 return (Math.max(nums1[i-1], nums2[j-1]) + Math.min(nums1[i], nums2[j]))/2.0;
             }
         }
-    
+
 
     public static void main(String[] args) {
         int[] arr = new int[]{1,2,3,4,4,4,4,4,4};

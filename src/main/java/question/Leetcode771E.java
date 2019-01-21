@@ -23,7 +23,7 @@ package question;
  * @since 2019/1/10
  */
 
-public class Leetcode771 {
+public class Leetcode771E {
     public int numJewelsInStones(String J, String S) {
         int i = 0;
         for (char j : J.toCharArray()){

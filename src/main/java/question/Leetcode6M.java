@@ -42,7 +42,7 @@ import java.util.stream.IntStream;
  * @since 2019/1/7
  */
 
-public class Leetcode6 {
+public class Leetcode6M {
 
     public static String convert(String s, int numRows) {
         final int circle = 2 * numRows - 2 ;

@@ -24,7 +24,7 @@ package question;
  * @since 2019/1/21
  */
 
-public class Leetcode7 {
+public class Leetcode7E {
     public static int reverse(int x) {
         boolean negative = false;
         int result = 0;

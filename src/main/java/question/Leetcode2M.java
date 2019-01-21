@@ -18,7 +18,7 @@ package question;
  * @since 2018/11/12
  */
 
-public class Leetcode2 {
+public class Leetcode2M {
 
     /*
      每位依次相加，用一个标志位记录进位情况，需要注意几种特殊情况，A比B长，AB的位数相同但最后还产生了一位最高位进位
@@ -74,7 +74,7 @@ public class Leetcode2 {
     }
 
     public static void main(String[] args) {
-        Leetcode2 l2 =new Leetcode2();
+        Leetcode2M l2 =new Leetcode2M();
         ListNode first = l2.new ListNode(2, l2.new ListNode(4, l2.new ListNode(3)));
         ListNode second = l2.new ListNode(5, l2.new ListNode(6, l2.new ListNode(4)));
         System.out.println(l2.addTwoNumbers(first,second));

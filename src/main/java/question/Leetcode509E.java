@@ -35,7 +35,7 @@ package question;
  * @since 2019/1/9
  */
 
-public class Leetcode509 {
+public class Leetcode509E {
 
     public int fib(int N) {
         if(N<=1)

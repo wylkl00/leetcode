@@ -17,7 +17,7 @@ import com.sun.xml.internal.bind.v2.model.core.ID;
  * @since 2019/1/7
  */
 
-public class Leetcode5 {
+public class Leetcode5M {
 
     //中心扩展法
     public static String longestPalindrome(String s) {

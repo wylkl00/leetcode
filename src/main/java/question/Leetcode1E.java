@@ -1,7 +1,5 @@
 package question;
 
-import sun.applet.Main;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.IntStream;
@@ -24,7 +22,7 @@ import java.util.stream.IntStream;
  * @since 2018/11/12
  */
 
-public class Leetcode1 {
+public class Leetcode1E {
 
     /*
      1.把数组内的数存到一个（key，value）= （nums值，所在的位置）的map里（空间换时间）
@@ -42,7 +40,7 @@ public class Leetcode1 {
     }
 
     public static void main(String[] args) {
-        Leetcode1 l1 = new Leetcode1();
+        Leetcode1E l1 = new Leetcode1E();
         System.out.println(twoSum(new int[]{2, 7, 11, 15}, 9));
     }
 }
