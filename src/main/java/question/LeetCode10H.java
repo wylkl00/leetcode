@@ -67,8 +67,6 @@ public class LeetCode10H {
         int i = 0;
         char[] pArr = p.toCharArray();
         List<SimpleEntry<Character, Boolean>> table = new ArrayList<>();
-        int[] indexArr;
-        char[] charArr;
         SimpleEntry entry = null;
 
         //生成table的数据结构
@@ -94,8 +92,8 @@ public class LeetCode10H {
         }
 
         //用来存放p中每一个字符匹配到s中的哪一位
-        indexArr = new int[table.size()];
-        charArr = s.toCharArray();
+        int[] indexArr = new int[table.size()];
+        char[] charArr = s.toCharArray();
         int sn = 0;
         int pn = 0;
         //贪心然后回溯
