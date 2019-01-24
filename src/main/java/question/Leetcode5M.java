@@ -20,7 +20,7 @@ import com.sun.xml.internal.bind.v2.model.core.ID;
 
 public class Leetcode5M {
 
-    //中心扩展法
+    //中心扩展法 时间O(n^2) 空间O(1）
     public static String longestPalindrome1(String s) {
         if (s == null || s.length() == 0){
             return s;
@@ -54,7 +54,7 @@ public class Leetcode5M {
         return s.substring(start, end + 1);
     }
 
-    //动态规划
+    //动态规划 时间O(n^2) 空间 优化后 O(n）
     public static String longestPalindrome2(String s) {
         if (s == null || s.length() == 0){
             return s;
@@ -86,8 +86,11 @@ public class Leetcode5M {
         return map[j-1] && arr[i]==arr[j];
     }
 
-    //Manacher算法
+    //Manacher算法 时间O(n) 空间O(1)
     public static String longestPalindrome(String s) {
+        if (s == null || s.length() == 0){
+            return s;
+        }
         char[] news =new char[s.length()*2+1];
         for (int i =0 ;i <s.length()*2+1;i++){
             if (i % 2 ==0) {
@@ -97,9 +100,35 @@ public class Leetcode5M {
             }
         }
         int[] radius = new int[news.length];
+        int id = 0;
+        int mx= 0;
+        for (int i = 1; i<radius.length; i++){
+            //mx不需要变
+            if (mx > i && i + radius[2 * id -i] < mx){
 
+                radius[i] = radius[2 * id -i];
+                //mx过小
+            }else {
+                while ( mx + 1 < news.length && 2 * i - mx -1 >= 0 && news[mx + 1] == news[2 * i - mx -1]){
+                    mx++;
+                }
+                radius[i] = mx - i;
+                id = i;
+            }
+        }
+        int result = 0;
+        int positon = 0;
+        for (int i = 0; i<radius.length; i++){
+            if (radius [i] > result){
+                positon = i;
+                result = radius [i];
+            }
+        }
+
+
+        return result % 2 == 1 ? s.substring((positon - 1)/2 - ((result-1)/2), (positon - 1)/2 + ((result-1)/2) + 1) : s.substring(positon/2 - (result/2), positon /2 + result/2);
     }
     public static void main(String[] args) {
-        longestPalindrome("babad");
+        System.out.println(longestPalindrome("bb"));
     }
 }
