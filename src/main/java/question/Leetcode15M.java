@@ -25,6 +25,7 @@ import java.util.Map;
  */
 
 public class Leetcode15M {
+
     //两次不完全循环+二分查找 时间复杂度O(n^2*logn) 空间复杂度O(1)
     public List<List<Integer>> threeSum1(int[] nums) {
         Arrays.sort(nums);
@@ -52,7 +53,7 @@ public class Leetcode15M {
 
 
     //用哈希表 时间O(n^2)空间O(n)
-    public List<List<Integer>> threeSum(int[] nums) {
+    public List<List<Integer>> threeSum2(int[] nums) {
         Arrays.sort(nums);
         List<List<Integer>> result = new ArrayList<>();
         Map<Integer,Integer> map = new HashMap<>();
@@ -79,8 +80,46 @@ public class Leetcode15M {
         }
         return result;
     }
+
+    //双指针 时间O（n^2）空间O(1）
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> result = new ArrayList<>();
+        for (int i = 0; i< nums.length-2 && nums[i]<= 0 ; i++){
+            if (i > 0 && nums[i] == nums[i-1]){
+                continue;
+            }
+            int start = i + 1;
+            int end = nums.length -1;
+            while (end > start){
+                if (nums[i] + nums[start] + nums[end] > 0){
+                    do {
+                        end --;
+                    }while (end > start && nums[end] == nums[end + 1]);
+                }else if (nums[i] + nums[start] + nums[end] < 0){
+                    do {
+                        start ++;
+                    }while (end > start && nums[start] == nums[start - 1]);
+                }else {
+                    List<Integer> list = new ArrayList<>();
+                    list.add(nums[i]);
+                    list.add(nums[start]);
+                    list.add(nums[end]);
+                    result.add(list);
+                    do {
+                        end --;
+                    }while (end > start && nums[end] == nums[end + 1]);
+                    do {
+                        start ++;
+                    }while (end > start && nums[start] == nums[start - 1]);
+                }
+            }
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         System.out.println(new Leetcode15M().threeSum(new int[]{
-                -4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6}));
+                -1,0,1,2,-1,-4}));
     }
 }
