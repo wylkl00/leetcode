@@ -45,38 +45,10 @@ public class Leetcode2M {
         return headNode;
     }
 
-    public class ListNode {
-
-        int val;
-
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-
-        ListNode(int x , ListNode listNode){
-            val = x;
-            next = listNode;
-        }
-
-        @Override
-        public String toString() {
-            StringBuffer sb = new StringBuffer(String.valueOf(val));
-            ListNode nextNode = this.next;
-            while (nextNode != null){
-
-                sb.append("->").append(nextNode.val);
-                nextNode = nextNode.next;
-            }
-            return sb.toString();
-        }
-    }
-
     public static void main(String[] args) {
         Leetcode2M l2 =new Leetcode2M();
-        ListNode first = l2.new ListNode(2, l2.new ListNode(4, l2.new ListNode(3)));
-        ListNode second = l2.new ListNode(5, l2.new ListNode(6, l2.new ListNode(4)));
+        ListNode first = new ListNode(2, new ListNode(4, new ListNode(3)));
+        ListNode second = new ListNode(5, new ListNode(6, new ListNode(4)));
         System.out.println(l2.addTwoNumbers(first,second));
 
     }
