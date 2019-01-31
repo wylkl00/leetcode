@@ -1,10 +1,5 @@
 package question;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
-
 /**
  * Description: 给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。
  *
@@ -47,6 +42,7 @@ public class Leetcode19M {
         n1.next = n1.next.next;
         return head;
     }
+
 
 
     //双指针
