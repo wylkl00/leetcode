@@ -47,66 +47,9 @@ import java.util.Map;
 
 public class Leetcode854H {
 
+    //fixme 思路有误
     public int kSimilarity(String A, String B) {
-        int result = 0;
-        char[] charA = A.toCharArray();
-        char[] charB = B.toCharArray();
-        //compare
-        Map<Character, List<Integer>> aMap = new HashMap<>();
-        Map<Character, List<Integer>> bMap = new HashMap<>();
-        for (int i = 0 ; i < charA.length; i ++ ) {
-            if(charA[i] != charB[i]) {
-                if(aMap.get(charA[i]) == null) {
-                    List<Integer> list = new ArrayList<>();
-                    list.add(i);
-                    aMap.put(charA[i] , list);
-                } else {
-                    aMap.get(charA[i] ).add(i);
-                }
-
-                if(bMap.get(charB[i]) == null) {
-                    List<Integer> list = new ArrayList<>();
-                    list.add(i);
-                    bMap.put(charB[i], list);
-                } else {
-                    bMap.get(charB[i]).add(i);
-                }
-            }
-        }
-            List <Map.Entry<Character,List<Integer>>> blist = new ArrayList<>(bMap.entrySet());
-            blist.sort(Comparator.comparingInt(entry -> entry.getValue().size()));
-            for (Map.Entry<Character,List<Integer>> entry : blist){
-                List<Integer> bPositions = entry.getValue();
-                List<Integer> aPositions = aMap.get(entry.getKey());
-                Iterator<Integer>  bi = bPositions.iterator();
-                while (bi.hasNext()){
-                    int bPosition = bi.next();
-                    Iterator<Integer>  ai =  aPositions.iterator();
-                    while (ai.hasNext()){
-                         int aPosition = ai.next();
-                         if (charA[bPosition] == charB[aPosition]){
-                            result ++ ;
-                            ai.remove();
-                            bi.remove();
-                            aMap.get(charA[bPosition]).remove(new Integer(bPosition));
-                            bMap.get(charB[aPosition]).remove(new Integer(aPosition));
-                            break;
-                         }
-                    }
-                }
-                while (!bPositions.isEmpty()){
-                    result++;
-                    int bRemove = bPositions.remove(0);
-                    int aRemove = aPositions.remove(0);
-                    //B的aRemove与bremove交换位置
-                    List <Integer> list = bMap.get(charB[aRemove]);
-                    list.set(list.indexOf(aRemove),bRemove);
-                    char temp = charB[bRemove];
-                    charB[bRemove] = charB[aRemove];
-                    charB[aRemove] = temp;
-                }
-            }
-        return result;
+        return 0;
     }
     public static void main(String[] args) {
         System.out.println(new Leetcode854H().kSimilarity("aabbccddee","cdacbeebad"));
