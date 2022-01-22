@@ -1,7 +1,38 @@
-.DS_store
-.idea
+# maven ignore
 target/
+*.jar
+*.war
+*.zip
+*.tar
+*.tar.gz
+*.class
+*.project
+*.factorypath
+
+# eclipse ignore
+.settings/
+.classpath
+bin/
+NewCustServSer/
+SrenewSer/
+sms-drugstore/
+
+# idea ignore
+.idea/
+*.ipr
 *.iml
-/.settings/
-/.classpath
-/.project
+*.iws
+
+# temp ignore
+*.log
+*.cache
+*.diff
+*.patch
+*.tmp
+
+# system ignore
+.DS_Store
+Thumbs.db
+
+# else
+.springBeans
