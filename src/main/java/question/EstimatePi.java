@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class EstimatePi {
 
     public static void main(String[] args) {
-        final int times = 10000000;
+        final int times = 100000000;
         int inCircle = 0;
         for (int i = 1; i<=times; i++){
             double x = Math.random();
